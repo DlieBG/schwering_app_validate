@@ -1,0 +1,4 @@
+pyjwt
+uvicorn
+fastapi
+python-dotenv
