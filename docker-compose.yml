@@ -1,7 +1,7 @@
 version: '3'
 services:
   validate:
-    build: .
+    image: ghcr.io/dliebg/schwering_app_validate/validate:main
     container_name: schwering_app_validate
     restart: unless-stopped
     env_file: .env
