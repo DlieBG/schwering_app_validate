@@ -1,0 +1,20 @@
+version: '3'
+services:
+  validate:
+    build: .
+    container_name: schwering_app_validate
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 8704:8704
+    labels:
+      - "com.centurylinklabs.watchtower.scope=schwering_app_validate"
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: schwering_app_tracker_watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: schwering_app_tracker_frontend schwering_app_tracker_backend -i 3600 --scope schwering_app_validate
+    labels:
+      - "com.centurylinklabs.watchtower.scope=schwering_app_validate"
